@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.duia.jetpackappstartup">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.JetpackAppStartup">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.duia.jetpackappstartup.AInitApplication"
+                android:value="androidx.startup" />
+            <!--            meta中添加 tools:node="remove" 就不会自动触发  在MainActivity中有手动触发的方法-->
+        </provider>
+        <!--        禁用所有组件的自动初始化-->
+        <!--        <provider-->
+        <!--            android:name="androidx.startup.InitializationProvider"-->
+        <!--            android:authorities="${applicationId}.androidx-startup"-->
+        <!--            tools:node="remove" />-->
+
+        <!--        ContentProvier-->
+        <provider
+            android:name="com.duia.jetpackappstartup.MyProvider"
+            android:authorities="${applicationId}.myProvider"
+            android:exported="false" />
+    </application>
+
+</manifest>
